@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: cdmitry/prometheus-test-backend
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 5000
+
+app:
+  targetPort: 80
+
+prometheus:
+  scrape: "!!string true"
+  path: "!!string /metrics-text"
+  port: "!!string 80"
+
+resources:
+  limits:
+    memory: "256Mi"
+    cpu: "500m"

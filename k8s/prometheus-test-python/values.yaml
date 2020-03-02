@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: cdmitry/prometheus-test-python
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  appPort: 8001
+  metricsPort: 8000
+
+app:
+  appPort: 8001
+  metricsPort: 8000
+
+prometheus:
+  scrape: "!!string true"
+  path: "!!string /metrics"
+  port: "!!string 8000"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
