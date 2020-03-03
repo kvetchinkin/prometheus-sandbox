@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "grafana.fullname" . }}
+  labels:
+{{ include "grafana.labels" . | indent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-targer: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /grafana
+            backend:
+              serviceName: grafana
+              servicePort: http

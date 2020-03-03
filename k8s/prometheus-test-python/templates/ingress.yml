@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "prometheus-test-python.fullname" . }}
+  labels:
+{{ include "prometheus-test-python.labels" . | indent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-targer: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /prometheus-test-python-metrics
+            backend:
+              serviceName: prometheus-test-python
+              servicePort: metrics
+          - path: /prometheus-test-python
+            backend:
+              serviceName: prometheus-test-python
+              servicePort: http
