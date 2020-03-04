@@ -5,7 +5,7 @@ FROM $BUILD_IMAGE AS build
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
-COPY ./backend.API/*.csproj ./backend.API/
+COPY backend.API/backend.API.csproj ./backend.API/
 COPY NuGet.Config ./backend.API/
 WORKDIR /app/backend.API
 RUN dotnet restore --configfile NuGet.Config
