@@ -1,11 +1,11 @@
-ARG BUILD_IMAGE=mcr.microsoft.com/dotnet/core/sdk:2.2
-ARG RUN_IMAGE=mcr.microsoft.com/dotnet/core/aspnet:2.2
+ARG BUILD_IMAGE=mcr.microsoft.com/dotnet/core/sdk:3.1
+ARG RUN_IMAGE=mcr.microsoft.com/dotnet/core/aspnet:3.1
 
 FROM $BUILD_IMAGE AS build
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
-COPY backend.API/*.csproj ./backend.API/
+COPY ./backend.API/*.csproj ./backend.API/
 COPY NuGet.Config ./backend.API/
 WORKDIR /app/backend.API
 RUN dotnet restore --configfile NuGet.Config
